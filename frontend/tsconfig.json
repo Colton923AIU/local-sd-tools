@@ -1,0 +1,14 @@
+{
+  // define parent tsconfig
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    // transpilation settings
+    "lib": ["DOM"],
+    "target": "ESNext",
+
+    // filesystem
+    "baseUrl": ".",
+    "paths": {},
+    "rootDirs": ["./", "../"]
+  }
+}

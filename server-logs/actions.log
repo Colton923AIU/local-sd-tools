@@ -1,0 +1,13 @@
+1716313001 [INFO]: Folder created: ..\frontend\components\Flex
+1716313001 [INFO]: SCSS module Flex.module.scss created successfully
+1716313001 [INFO]: UI component Flex created successfully
+1716325332 [INFO]: Folder created: ..\frontend\components\Text
+1716325332 [INFO]: SCSS module Text.module.scss created successfully
+1716325332 [INFO]: UI component Text created successfully
+1716328205 [ERROR]: Unexpected error: Error: Command failed: git add . && git commit -m "Test if push works" && git push
+The following paths are ignored by one of your .gitignore files:
+bundle
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
+

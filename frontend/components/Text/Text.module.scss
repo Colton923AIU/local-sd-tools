@@ -1,0 +1,37 @@
+.root {
+  display: flex;
+
+  &.none {
+    font-size: 0px;
+  }
+  &.xxxs {
+    font-size: 0.5rem;
+  }
+  &.xxs {
+    font-size: 0.7rem;
+  }
+  &.xs {
+    font-size: 0.9rem;
+  }
+  &.sm {
+    font-size: 1rem;
+  }
+  &.md {
+    font-size: 1.2rem;
+  }
+  &.lg {
+    font-size: 1.5rem;
+  }
+  &.xl {
+    font-size: 1.8rem;
+  }
+  &.xxl {
+    font-size: 2.4rem;
+  }
+  &.xxxl {
+    font-size: 3.2rem;
+  }
+  &.max {
+    font-size: 5rem;
+  }
+}

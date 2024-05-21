@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    // transpilation settings
+    "jsx": "react-jsx",
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ESNext",
+
+    // dev tools
+    "sourceMap": true,
+
+    // features configuration
+    "esModuleInterop": true,
+    "strict": true,
+    "resolveJsonModule": true,
+
+    // filesystem
+    "baseUrl": "./frontend",
+    "paths": {}
+  },
+  "include": ["types/**/*.d.ts", "**/*.tsx", "**/*.ts", "**/*.js"]
+}
