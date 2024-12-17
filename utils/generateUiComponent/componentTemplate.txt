@@ -1,0 +1,9 @@
+import * as React from 'react';
+import styles from './${name}.module.scss';
+
+const ${name} = () => (
+  <div className={styles.root}>
+  </div>
+);
+
+export default ${name};

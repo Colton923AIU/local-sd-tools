@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+import { readFileSync } from "fs";
 import logger from "../logger/logger";
 import { Request, Response } from "express";
 
@@ -22,16 +23,10 @@ const generateUiComponent = async (req: Request, res: Response) => {
       return res.status(400).send("Name is required");
     }
 
-    const componentTemplate = `import * as React from 'react';
-import styles from './${name}.module.scss';
-
-const ${name} = () => (
-  <div className={styles.root}>
-  </div>
-);
-
-export default ${name};`;
-
+    const componentTemplate = readFileSync("./componentTemplate.txt")
+      .toString()
+      .replace("${name}", name);
+    console.log("Utilizing Component Template: ", componentTemplate);
     const componentCssTemplate = `.root {
   display: flex;
 };`;
@@ -57,7 +52,9 @@ export default ${name};`;
             return res.status(500).send("Failed to create UI component");
           }
           logger.info(`UI component ${name} created successfully`);
-          res.send(`UI component ${name} created successfully`);
+          res
+            .status(200)
+            .send({ message: `UI component ${name} created successfully` });
         });
       });
     });

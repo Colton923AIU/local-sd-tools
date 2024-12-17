@@ -7,6 +7,8 @@ const App: FC = () => {
   const [spfxValue, setSPFXValue] = useState<string | null>(null);
   const [uicValue, setUICValue] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [uicMessage, setUICMessage] = useState<string | null>(null);
+
   const handleNewSPFX = () => {
     if (!spfxValue) return;
     fetch("/api/generate-new-spfx", {
@@ -33,9 +35,9 @@ const App: FC = () => {
         // Handle errors, e.g., display error message to the user
       });
   };
-  const handleNewUIC = () => {
+  const handleNewUIC = async () => {
     if (!uicValue) return;
-    fetch("/api/generate-ui-component", {
+    await fetch("/api/generate-ui-component", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,15 +46,12 @@ const App: FC = () => {
         name: uicValue,
       }),
     })
-      .then((response) => {
+      .then(async (response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("UI Component created:", data);
-        // Provide feedback to the user, e.g., alert or UI update
+        const uicMessage = await response.json().then((val) => val.message);
+        setUICMessage(uicMessage || null);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -72,18 +71,20 @@ const App: FC = () => {
       }),
     })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+        if (response.status === 500) {
+          setUICMessage("Error!");
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("UI Component created:", data);
-        // Provide feedback to the user, e.g., alert or UI update
+        if (response.status === 200) {
+          setUICMessage("Successfully created component!");
+          setTimeout(() => {
+            setUICMessage(null);
+          }, 10000);
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
         // Handle errors, e.g., display error message to the user
+        setUICMessage("Error!");
       });
   };
   return (
@@ -123,6 +124,7 @@ const App: FC = () => {
             id="uic"
             type={"text"}
           ></input>
+          <label>{uicMessage}</label>
           <div style={{ margin: ".3rem", width: "1px", height: "1px" }} />
 
           <button onClick={() => handleNewUIC()} type={"submit"}>

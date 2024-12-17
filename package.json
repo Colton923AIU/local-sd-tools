@@ -9,7 +9,7 @@
     "watch:client": "webpack --watch --stats=minimal --mode=development --env target=client --config frontend/webpack.config.js",
     "watch:server": "webpack --watch --stats=minimal --mode=development --env target=server --config webpack.config.js",
     "watch": "rimraf bundle && concurrently \"npm run watch:client\" \"npm run watch:server\"",
-    "serve": "cd bundle && nodemon index.js",
+    "serve": "cd bundle && start http://localhost:3000 & nodemon index.js",
     "bundle:client": "webpack --mode=production --config frontend/webpack.config.js",
     "bundle:server": "webpack --mode=production",
     "build": "rimraf bundle && npm run bundle:client && npm run bundle:server"
